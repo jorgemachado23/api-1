@@ -49,7 +49,7 @@ namespace api
 		fann_set_activation_function_output(ann, FANN_SIGMOID_SYMMETRIC);
 		
 		//Se define donde se encuentra el archivo de data y junto con el los parametros para entrenamiento
-		fann_train_on_file(ann, "/root/workspace/API/Entrenamiento_Torrent5.dat", max_epochs, epochs_between_reports, desired_error);
+		fann_train_on_file(ann, "Entrenamiento_Torrent5.dat", max_epochs, epochs_between_reports, desired_error);
 		
 		//Se especifica en que archivo se va a guardar la estructura, es decir la red neuronal entrenada
 		fann_save(ann, "Torrent.net");
