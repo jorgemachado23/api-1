@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 	}
 	printf("Mascara de Red: %s\n",mask);
 
-	system("PAUSE");
+	fscanf(stdin,"%s");
 	
 	return 0; 
 }
