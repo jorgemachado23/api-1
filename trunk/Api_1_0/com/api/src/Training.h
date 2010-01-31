@@ -6,11 +6,11 @@ namespace api
 
 class Training
 {
-public:
-	Training();// constructor
-	virtual ~Training(); //destructor
-	void RunTrainingTorrent(); //funcion que realiza el entrenamiento
-	void RunTrainingMSN();// funcion que realiza el entrenamiento para el protocolo Messenger
+	public:
+		Training();// constructor
+		virtual ~Training(); //destructor
+		void RunTrainingTorrent(); //funcion que realiza el entrenamiento
+		void RunTrainingMSN();// funcion que realiza el entrenamiento para el protocolo Messenger
 };
 
 }

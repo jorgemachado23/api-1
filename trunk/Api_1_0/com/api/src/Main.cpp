@@ -1,4 +1,5 @@
 #include "Training.h"
+#include "RunIA.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -12,62 +13,42 @@ using namespace api;
 int main(int argc, char **argv)
 {
 	Training entrenamiento;
+//	
+//	entrenamiento.RunTrainingTorrent();
+//	
+//	entrenamiento.RunTrainingMSN();
 	
-	entrenamiento.RunTrainingTorrent();
 	
-	//Training *entrenamiento = new Training();
+	FILE *file_in;
 	
-	//entrenamiento->RunTrainingTorrent();
+	long i = 0;
 	
-	char *net;
-	char *mask;
-	char *dev;
-	int ret;
+    file_in=fopen("/home/user/Desktop/pruebas/paquete.txt","r");
 	
-	char errbuf[PCAP_ERRBUF_SIZE];
+	fann_type entrada[160];
 	
-	bpf_u_int32 netp;
+	        while(!feof(file_in))
+        	{
+        	
+        	char aux = getc(file_in);
+        	
+	        	if ( aux == '0' )
+	        	{
+	        		entrada[i]=0;
+	        		i = i + 1;
+	        	}
+	        	else 
+		        	if (aux == '1')
+		        	{
+		        		entrada[i]=1;
+		        		i= i + 1;
+		        	}
+	        	
+			}
 	
-	bpf_u_int32 maskp;
+	RunIA corrida;
 	
-	struct in_addr addr;
+	corrida.Run(entrada);
 	
-	if ((dev = pcap_lookupdev(errbuf)) == NULL) //conseguimos la primera interfaz libre
-	{
-		printf("ERROR %s\n",errbuf);
-		exit(-1);
-	}
-	printf("Nombre del dispositivo: %s\n",dev); //mostramos el nombre del dispositivo
-	
-	if ((ret = pcap_lookupnet(dev,&netp,&maskp,errbuf))== -1 ) //consultamos las direccion de red y las mascara
-	{
-		printf("ERROR %s\n",errbuf);
-		exit(-1);
-	}
-	
-	addr.s_addr = netp; //Traducimos la direccion de red a algo legible
-	
-	if ((net = inet_ntoa(addr))==NULL)
-	{
-		perror("inet_ntoa");
-		exit(-1);
-	}
-	
-	printf("Direccion de Red: %s\n",net);
-	
-	addr.s_addr = maskp; //Idem para la mascara de subred
-	
-	mask = inet_ntoa(addr);
-	
-	if ((net=inet_ntoa(addr))==NULL)
-	{
-		perror("inet_ntoa");
-		
-		exit(-1);
-	}
-	printf("Mascara de Red: %s\n",mask);
-
 	fscanf(stdin,"%s");
-	
-	return 0; 
 }
