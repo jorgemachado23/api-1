@@ -37,6 +37,7 @@ class Sniffer
 	public:
 		Sniffer();
 		virtual ~Sniffer();
+		void RunSniffing(int argc, char **argv);
 		};
 
 }
