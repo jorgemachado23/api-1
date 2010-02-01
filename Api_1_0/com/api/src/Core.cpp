@@ -34,16 +34,21 @@ namespace api{
 	/***Toma un areglo de enteros y devuelve su representacion binaria******/
 	/**********Usando el compelemento a 2***********************************/	
 	
-	int *decToBin(int decimal, int nBits, int binary[]) {
+	int *decToBin(char c,int binary[]) {
 	    int i;
-	
+	    
+		int decimal = (int)c;
+	    
 	    int flag = 0;
+	    
+	    int nBits = 8;
 	    /* Si es un número negativo, lo hacemos positivo y le restamos 1(*), */
 	    /* además activamos el flag para saber que es negativo */
 	
 	    /* (*) El complemento a 2 es igual que el complemento a 1, que es cambiar */
 	    /* 1->0, 0->1, y luego sumando 1 en binario. Aquí restamos 1 en decimal y */
 	    /* luego pasamos a binario. */
+	    
 	    if (decimal < 0) 
 	        {
 	            flag = 1;
@@ -75,49 +80,6 @@ namespace api{
 	    return binary;
 	}
 	
- 	/***********************************************************************/	
-	/************************Funcion Conversor*****************************/	
-	/***Toma un caracter y lo convierte en un String de 8 posiciones*******/
-	/***Equivalente a su valor en bytes***********************************/	
 
-	string Core::Conversor(char c) 
-	{  
-		try{ 
-		
-			int n1=(int)c;
-			
-			int *n2;
-			
-			int n3[8];
-		 	
-		 	string val="";
-		 	
-		 	n2=decToBin(n1,8,n3);
-   	
-	
-			for (int i = 0; i< 8 ; i++)
-			{
-				if (n3[i] == 1)
-				{
-					val = val + "1" ;
-				}
-				else
-					if(n3[i] == 0) 
-					{
-					
-					val=val +"0";
-					
-					}
-			}
-	
-   			return val; 
-	   }
-	   catch(...)
-	   {
-	   		printf("Error en la conversion del caracter");
-	   		
-	   		return NULL;
-	   }
-	} 
 	
 } 
