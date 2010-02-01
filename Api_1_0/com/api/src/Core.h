@@ -14,7 +14,7 @@ class Core
 	public:
 		Core(); //Constructor
 		virtual ~Core(); //Destructor	
-		string Conversor(char c);//Funcion que devuelve el valor en bytes de un char 
+		int* decToBin(char c,int binary[]);//Funcion que devuelve el valor en bytes de un char 
 };
 }
 #endif /*CORE_H_*/

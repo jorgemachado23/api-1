@@ -1,4 +1,7 @@
 #include "Sniffer.h"
+#include "fann.h"
+#include "Core.h"
+#include "RunIA.h"
 #define APP_NAME		"sniffex"
 #define APP_DESC		"Sniffer example using libpcap"
 #define APP_COPYRIGHT	"Copyright (c) 2005 The Tcpdump Group"
@@ -34,7 +37,9 @@ namespace api
  	/******************** Atributos, Constantes **************************/
  	/******************** Y Estructuras de la clase***********************/
  	/*********************************************************************/	
- 
+ 	
+ 	
+ 	 
  //Esta clase contiene toda la implementacion para el analizador de paquetes
  //realizado por la gente de TCPDUMP
  
@@ -99,6 +104,8 @@ namespace api
 	};
 	
 	
+	fann_type entrada[160]; //varible que permite llenar las neuronas de entrada
+	
 	/*******Contructor********/		
 	Sniffer::Sniffer()
 	{
@@ -107,6 +114,7 @@ namespace api
 	Sniffer::~Sniffer()
 	{
 	}
+	
 	
 	void
 	got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet);
@@ -166,7 +174,7 @@ namespace api
 		int i;
 		int gap;
 		const u_char *ch;
-		int b;
+		
 		/* offset */
 		printf("%05d   ", offset);
 		
@@ -222,10 +230,52 @@ namespace api
 		int line_len;
 		int offset = 0;					/* zero-based offset counter */
 		const u_char *ch = payload;
-	
+		const u_char *ch2 = payload; //guardo el payload completo
+		
+		//verifico que no sea menor o igual a 0
 		if (len <= 0)
 			return;
-	
+		
+		//recorro los primeros 20 bytes
+		for(int i = 0; i < 20; i++) {
+		
+			//verifico si vale null
+			
+			if (ch != NULL)
+			{	
+				//Tomo el valor del caracter y lo transformo en un byte binario
+						
+				Core core; 			
+				
+				int valor[8];
+					
+				int *puntero;
+				
+				puntero = core.decToBin(*ch2,valor);
+				
+				//coloco cada bit del byte devuelto por la funcion en una neurona
+				//de la IA
+				for (int j = 0; j< 8; j++)
+				{
+					entrada [i*8+j] = valor[j];
+				}
+			
+			}
+			else{
+				//de ser null lo lleno 8 casillas con 0
+				for (int j = 0; j< 8; j++)
+				{
+					entrada [i*8+j] = 0;
+				}
+			}
+			
+			ch2++;
+		}
+		
+		RunIA corrida;
+		
+		corrida.Run(entrada);
+		
 		/* data fits on one line */
 		if (len <= line_width) {
 			print_hex_ascii_line(ch, len, offset);
@@ -427,7 +477,6 @@ namespace api
 		pcap_close(handle);
 	
 		printf("\nCapture complete.\n");
-
 	
 	}
 }

@@ -34,7 +34,7 @@ namespace api{
 	/***Toma un areglo de enteros y devuelve su representacion binaria******/
 	/**********Usando el compelemento a 2***********************************/	
 	
-	int *decToBin(char c,int binary[]) {
+	int* Core::decToBin(char c,int binary[]) {
 	    int i;
 	    
 		int decimal = (int)c;
