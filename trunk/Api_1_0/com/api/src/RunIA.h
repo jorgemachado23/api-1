@@ -6,9 +6,9 @@ namespace api{
 class RunIA
 {
 	public:
-		RunIA();
-		virtual ~RunIA();
-		void Run(fann_type entrada[160]);
+		RunIA(); //Constructor
+		virtual ~RunIA(); // Destructor
+		void Run(fann_type entrada[160]); //Funcion que se encarga de correr en la IA el paquete
 };
 
 }
