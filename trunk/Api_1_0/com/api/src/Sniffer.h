@@ -18,6 +18,8 @@
 #define APP_COPYRIGHT	"Copyright (c) 2005 The Tcpdump Group"
 #define APP_DISCLAIMER	"THERE IS ABSOLUTELY NO WARRANTY FOR THIS PROGRAM."
 
+#include "RunIA.h"
+#include "fann.h"
 #include <pcap.h>
 #include <stdio.h>
 #include <string.h>
@@ -38,6 +40,7 @@ class Sniffer
 		Sniffer();
 		virtual ~Sniffer();
 		void RunSniffing(int argc, char **argv);
+		fann_type entrada[160];
 		};
 
 }
