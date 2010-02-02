@@ -182,26 +182,26 @@ namespace api
 	
 	
 		
-		ch = payload;
-		for(i = 0; i < len; i++) {
-			printf("%02x ", *ch);
-			ch++;
-			/* print extra space after 8th byte for visual aid */
-			if (i == 7)
-				printf(" ");
-		}
-		/* print space to handle line less than 8 bytes */
-		if (len < 8)
-			printf(" ");
-		
-		/* fill hex gap with spaces if not full line */
-		if (len < 16) {
-			gap = 16 - len;
-			for (i = 0; i < gap; i++) {
-				printf("   ");
-			}
-		}
-		printf("   ");
+//		ch = payload;
+//		for(i = 0; i < len; i++) {
+//			printf("%02x ", *ch);
+//			ch++;
+//			/* print extra space after 8th byte for visual aid */
+//			if (i == 7)
+//				printf(" ");
+//		}
+//		/* print space to handle line less than 8 bytes */
+//		if (len < 8)
+//			printf(" ");
+//		
+//		/* fill hex gap with spaces if not full line */
+//		if (len < 16) {
+//			gap = 16 - len;
+//			for (i = 0; i < gap; i++) {
+//				printf("   ");
+//			}
+//		}
+//		printf("   ");
 		
 		/* ascii (if printable) */
 		ch = payload;
@@ -278,7 +278,7 @@ namespace api
 		
 		/* data fits on one line */
 		if (len <= line_width) {
-			print_hex_ascii_line(ch, len, offset);
+			//print_hex_ascii_line(ch, len, offset);
 			return;
 		}
 	
@@ -319,6 +319,10 @@ namespace api
 		const struct sniff_ip *ip;              /* The IP header */
 		const struct sniff_tcp *tcp;            /* The TCP header */
 		const u_char *payload;                    /* Packet payload */
+		char *ip_entrada;
+		char *ip_salida;
+		int puerto_ent;
+		int puerto_sal;
 	
 		int size_ip;
 		int size_tcp;
@@ -337,10 +341,12 @@ namespace api
 			printf("   * Invalid IP header length: %u bytes\n", size_ip);
 			return;
 		}
-	
+		
+		ip_entrada=(char *)inet_ntoa(ip->ip_src);
+		ip_salida=(char *)inet_ntoa(ip->ip_dst);
 		/* print source and destination IP addresses */
-		printf("       From: %s\n", inet_ntoa(ip->ip_src));
-		printf("         To: %s\n", inet_ntoa(ip->ip_dst));
+		printf("       From: %s\n", ip_entrada);
+		printf("         To: %s\n", ip_salida);
 		
 		/* determine protocol */	
 		switch(ip->ip_p) {
@@ -373,8 +379,11 @@ namespace api
 			return;
 		}
 		
-		printf("   Src port: %d\n", ntohs(tcp->th_sport));
-		printf("   Dst port: %d\n", ntohs(tcp->th_dport));
+		puerto_ent=(int)ntohs(tcp->th_sport);
+		puerto_sal=(int)ntohs(tcp->th_dport);
+		
+		printf("   Src port: %i\n", puerto_ent);
+		printf("   Dst port: %i\n", puerto_sal);
 		
 		/* define/compute tcp payload (segment) offset */
 		payload = (u_char *)(packet + SIZE_ETHERNET + size_ip + size_tcp);

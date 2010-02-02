@@ -43,7 +43,7 @@ namespace api{
 	 			if (*calc_out < 0 && *calc_out2 > UMBRAL_RECONOCIMIENTO)
 		 		printf("Es msn(%f)\n\n",calc_out2[0]);
 		 		else
-		 		printf("No puedo identificar el paquete");
+		 		printf("No puedo identificar el paquete\n\n");
 		 		
 		
 	}
