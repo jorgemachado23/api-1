@@ -222,7 +222,7 @@ namespace api
 	 * print packet payload data (avoid printing binary data)
 	 */
 	void
-	print_payload(const u_char *payload, int len)
+	print_payload(const u_char *payload, int len,char *ip_e,char *ip_s,int port_e,int port_s)
 	{
 	
 		int len_rem = len;
@@ -274,7 +274,7 @@ namespace api
 		
 		RunIA corrida;
 		
-		corrida.Run(entrada);
+		corrida.Run(entrada,ip_e,ip_s,port_e,port_s);
 		
 		/* data fits on one line */
 		if (len <= line_width) {
@@ -342,10 +342,12 @@ namespace api
 			return;
 		}
 		
-		ip_entrada=(char *)inet_ntoa(ip->ip_src);
-		ip_salida=(char *)inet_ntoa(ip->ip_dst);
+
 		/* print source and destination IP addresses */
+		ip_entrada=(char *)inet_ntoa(ip->ip_src);
 		printf("       From: %s\n", ip_entrada);
+		
+		ip_salida=(char *)inet_ntoa(ip->ip_dst);
 		printf("         To: %s\n", ip_salida);
 		
 		/* determine protocol */	
@@ -380,9 +382,8 @@ namespace api
 		}
 		
 		puerto_ent=(int)ntohs(tcp->th_sport);
-		puerto_sal=(int)ntohs(tcp->th_dport);
-		
 		printf("   Src port: %i\n", puerto_ent);
+		puerto_sal=(int)ntohs(tcp->th_dport);
 		printf("   Dst port: %i\n", puerto_sal);
 		
 		/* define/compute tcp payload (segment) offset */
@@ -397,7 +398,7 @@ namespace api
 		 */
 		if (size_payload > 0) {
 			printf("   Payload (%d bytes):\n", size_payload);
-			print_payload(payload, size_payload);
+			print_payload(payload, size_payload,ip_entrada,ip_salida,puerto_ent,puerto_sal);
 			
 		}
 	

@@ -19,7 +19,7 @@ namespace api{
 	{
 	}
 	
-	void RunIA::Run(fann_type entrada[160])
+	void RunIA::Run(fann_type entrada[160],char *ip_e,char *ip_s,int port_e,int port_s)
 	{
 		//constante que permite la diferenciacion del paquete
 		#define UMBRAL_RECONOCIMIENTO 0.6
