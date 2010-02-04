@@ -15,6 +15,8 @@ class Core
 		Core(); //Constructor
 		virtual ~Core(); //Destructor	
 		int* decToBin(char c,int binary[]);//Funcion que devuelve el valor en bytes de un char 
+		void Clean_Rules();
+		void Add_Rules(string ip_entrada, string ip_salida, int p_entrada, int p_salida);
 };
 }
 #endif /*CORE_H_*/

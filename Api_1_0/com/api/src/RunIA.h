@@ -1,6 +1,12 @@
 #ifndef RUNIA_H_
 #define RUNIA_H_
 #include "fann.h"
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h>
+#include <sstream>
+#include <iostream>
+using namespace std;
 namespace api{
 
 class RunIA
@@ -8,7 +14,7 @@ class RunIA
 	public:
 		RunIA(); //Constructor
 		virtual ~RunIA(); // Destructor
-		void Run(fann_type entrada[160],char *ip_e,char *ip_s,int port_e,int port_s); //Funcion que se encarga de correr en la IA el paquete
+		void Run(fann_type entrada[160],string ip_e,string ip_s,int port_e,int port_s); //Funcion que se encarga de correr en la IA el paquete
 };
 
 }
