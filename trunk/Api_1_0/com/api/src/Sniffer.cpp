@@ -222,7 +222,7 @@ namespace api
 	 * print packet payload data (avoid printing binary data)
 	 */
 	void
-	print_payload(const u_char *payload, int len,char *ip_e,char *ip_s,int port_e,int port_s)
+	print_payload(const u_char *payload, int len,string ip_e,string ip_s,int port_e,int port_s)
 	{
 	
 		int len_rem = len;
@@ -319,8 +319,8 @@ namespace api
 		const struct sniff_ip *ip;              /* The IP header */
 		const struct sniff_tcp *tcp;            /* The TCP header */
 		const u_char *payload;                    /* Packet payload */
-		char *ip_entrada;
-		char *ip_salida;
+		string ip_entrada;
+		string ip_salida;
 		int puerto_ent;
 		int puerto_sal;
 	
@@ -344,11 +344,17 @@ namespace api
 		
 
 		/* print source and destination IP addresses */
-		ip_entrada=(char *)inet_ntoa(ip->ip_src);
-		printf("       From: %s\n", ip_entrada);
 		
-		ip_salida=(char *)inet_ntoa(ip->ip_dst);
-		printf("         To: %s\n", ip_salida);
+
+		
+		printf("       From: %s\n", inet_ntoa(ip->ip_src));
+		
+		ip_entrada = inet_ntoa(ip->ip_src);
+
+		printf("         To: %s\n", inet_ntoa(ip->ip_dst));
+		
+		ip_salida = inet_ntoa(ip->ip_dst);
+		
 		
 		/* determine protocol */	
 		switch(ip->ip_p) {
@@ -489,4 +495,6 @@ namespace api
 		printf("\nCapture complete.\n");
 	
 	}
+	
+
 }

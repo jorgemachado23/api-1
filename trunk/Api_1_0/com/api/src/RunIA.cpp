@@ -1,8 +1,10 @@
 #include "RunIA.h"
 #include "fann.h"
+#include "Core.h"
 namespace api{
 	
 	
+using namespace std;
 	
  	/*********************************************************************/
  	/*********************************************************************/
@@ -19,7 +21,7 @@ namespace api{
 	{
 	}
 	
-	void RunIA::Run(fann_type entrada[160],char *ip_e,char *ip_s,int port_e,int port_s)
+	void RunIA::Run(fann_type entrada[160],string ip_e,string ip_s,int port_e,int port_s)
 	{
 		//constante que permite la diferenciacion del paquete
 		#define UMBRAL_RECONOCIMIENTO 0.6
@@ -38,10 +40,32 @@ namespace api{
 			
 			//se verifica la respuesta segun la salida
 			if(*calc_out > UMBRAL_RECONOCIMIENTO)
-		 		printf("Es torrent (%f)\n\n",calc_out[0]);
+		 		{
+		 			printf("Es torrent (%f)\n\n",calc_out[0]);
+		 			
+		 			//Se manda a escribir la regla
+		 			
+		 			Core core;
+		 			
+		 			//core.Clean_Rules();
+		 			
+		 			core.Add_Rules(ip_e,ip_s,port_e,port_s);
+		 			
+		 		}
 	 		else
-	 			if (*calc_out < 0 && *calc_out2 > UMBRAL_RECONOCIMIENTO)
-		 		printf("Es msn(%f)\n\n",calc_out2[0]);
+	 			if (*calc_out < 0 && *calc_out2 > UMBRAL_RECONOCIMIENTO){
+	 				
+		 			//Se manda a escribir la regla	 				
+		 			
+		 			printf("Es msn(%f)\n\n",calc_out2[0]);
+		 			
+		 			Core core;
+		 			
+		 			//core.Clean_Rules();
+		 			
+		 			core.Add_Rules(ip_e,ip_s,port_e,port_s);	
+		 			
+	 			}
 		 		else
 		 		printf("No puedo identificar el paquete\n\n");
 		 		
