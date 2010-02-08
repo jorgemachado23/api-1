@@ -18,9 +18,13 @@ using namespace api;
 	
 int main(int argc, char **argv)
 {
-	Interfaz interfazg;
-	
-	interfazg.Inicio();
+        bool act_msn=false;
+
+        bool act_torrent=false;
+   
+	Interfaz *interfazg = new Interfaz(act_msn,act_torrent);
+
+	interfazg->Inicio();
 	
 //	Training entrenamiento;
 //	
