@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="51">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f1" displayName="api" projectFiles="true">
+        <itemPath>Core.cpp</itemPath>
+        <itemPath>Core.h</itemPath>
+        <itemPath>Interfaz.cpp</itemPath>
+        <itemPath>Interfaz.h</itemPath>
+        <itemPath>Main.cpp</itemPath>
+        <itemPath>RunIA.cpp</itemPath>
+        <itemPath>RunIA.h</itemPath>
+        <itemPath>Sniffer.cpp</itemPath>
+        <itemPath>Sniffer.h</itemPath>
+        <itemPath>Training.cpp</itemPath>
+        <itemPath>Training.h</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>fann</linkerLibLibItem>
+            <linkerLibLibItem>pcap</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Core.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Core.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Interfaz.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Interfaz.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Main.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="RunIA.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="RunIA.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Sniffer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Sniffer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Training.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Training.h">
+        <itemTool>3</itemTool>
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cCompilerTool>
+          <developmentMode>5</developmentMode>
+        </cCompilerTool>
+        <ccCompilerTool>
+          <developmentMode>5</developmentMode>
+        </ccCompilerTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Core.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Core.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Interfaz.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Interfaz.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Main.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="RunIA.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="RunIA.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Sniffer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Sniffer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Training.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Training.h">
+        <itemTool>3</itemTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
