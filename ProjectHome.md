@@ -1,0 +1,2 @@
+API es una herramienta que permite identificar protocolos de red a nivel de capa aplicación usando redes neuronales. La aplicación se esta desarrollando en C++ y como bloqueador iptables. Todo esto bajo entorno linux en su distribución Ubuntu y como ide desarrollo Eclipse.
+El compilador usado es GNU
